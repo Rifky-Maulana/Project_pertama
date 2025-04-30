@@ -2,13 +2,17 @@
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Permasalahan kesehatan mental, khususnya depresi, semakin menjadi perhatian di kalangan pelajar dan mahasiswa. Depresi pada pelajar dapat berdampak signifikan terhadap performa akademik, hubungan sosial, serta kualitas hidup secara keseluruhan. Oleh karena itu, penting untuk mengidentifikasi faktor-faktor yang dapat memicu atau memperburuk kondisi depresi sejak dini, agar dapat dilakukan intervensi atau pencegahan.
+
+Dataset yang digunakan dalam proyek ini diambil dari platform Kaggle, yang berisi data terkait depresi pada pelajar. Data mencakup informasi demografis (seperti usia dan jenis kelamin), kebiasaan hidup (seperti pola tidur dan aktivitas sosial), riwayat kesehatan mental, serta hasil skoring dari skala depresi standar.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+- Mengidentifikasi fitur-fitur utama yang berkorelasi dengan tingkat depresi pada pelajar.
+- Memprediksi apakah seorang pelajar mengalami depresi berdasarkan informasi yang tersedia menggunakan algoritma machine learning seperti Logistic Regression dan Decision Tree.
+- Memberikan insight kepada institusi pendidikan untuk menyusun strategi intervensi yang tepat.
+- Referensi:
+[1] American Psychological Association. (2020). Depression and College Students. APA.
+[2] WHO. (2021). Depression. https://www.who.int/news-room/fact-sheets/detail/depression
 
 ## Business Understanding
 
