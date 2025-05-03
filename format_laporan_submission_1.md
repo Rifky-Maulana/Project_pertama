@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Rifky Maulana Pasaribu
 
 ## Domain Proyek
 
@@ -199,10 +199,10 @@ Dataset dibagi menjadi dua bagian:
 - **Standardisasi membantu dalam mempercepat proses pelatihan** dan menjaga kestabilan algoritma, terutama saat fitur memiliki rentang nilai yang sangat berbeda.
 
 ## Modeling
-Pada tahap ini saya menggunakan algoritma logistic regression, Randomforest, dan DecisionTree
+Pada tahap ini penulis menggunakan algoritma logistic regression, Randomforest, dan DecisionTree
 
 1. **Logistic regression**
-   Pada bagian ini, kita akan membahas langkah-langkah yang digunakan untuk melatih dan mengevaluasi model regresi logistik. Model ini digunakan untuk tujuan klasifikasi, di mana kita memprediksi kelas atau kategori dari data berdasarkan fitur yang tersedia.
+   Pada bagian ini, penulis membahas langkah-langkah yang digunakan untuk melatih dan mengevaluasi model regresi logistik. Model ini digunakan untuk tujuan klasifikasi, di mana kita memprediksi kelas atau kategori dari data berdasarkan fitur yang tersedia.
    - Pelatihan Model (Training the Model)
         Pelatihan model dilakukan dengan menggunakan algoritma Logistic Regression. Langkah pertama adalah menentukan model regresi logistik dan mengonfigurasinya sesuai kebutuhan.
 
@@ -253,7 +253,7 @@ Pada tahap ini saya menggunakan algoritma logistic regression, Randomforest, dan
 
         - Memakan banyak waktu pelatihan dan memori.
 ### Hyperparameter tuninhg pada RandomForest
-Disini saya menggunakan Grid Search untuk mencari kombinasi parameter terbaik untuk Random Forest dan menyimpannya dalam Best model
+Disini penulis menggunakan Grid Search untuk mencari kombinasi parameter terbaik untuk Random Forest dan menyimpannya dalam Best model
 
 ![image](https://github.com/user-attachments/assets/3619baba-762c-415a-ac2d-f492fd8b0e1d)
 
@@ -270,7 +270,7 @@ dan seterusnya...
 Dengan total 3 × 3 × 3 = 27 kombinasi.
 
 ### Pemilihan Model
-Disini setelah saya melatih model dengan beberapa algoritma ML saya memutuskan memakai model RandomForest untuk prediksi depresi. Pemilihan Random Forest dalam penelitian ini didasarkan pada beberapa alasan berikut:
+Disini setelah penulis melatih model dengan beberapa algoritma ML penulis memutuskan memakai model RandomForest untuk prediksi depresi. Pemilihan Random Forest dalam penelitian ini didasarkan pada beberapa alasan berikut:
 
 - Kemampuan Menangani Data Non-Linier
     Random Forest dapat mempelajari pola yang kompleks dan non-linier antara fitur dan target, yang sangat cocok jika data tidak mengikuti hubungan linier.
@@ -290,7 +290,7 @@ Disini setelah saya melatih model dengan beberapa algoritma ML saya memutuskan m
 Dengan keunggulan-keunggulan tersebut, Random Forest menjadi pilihan yang tepat untuk membangun model prediksi dalam penelitian ini.
 
 ## Evaluation
-Saya memilih akurasi (accuracy) sebagai metrik utama karena ingin mengukur seberapa sering model secara keseluruhan memberikan prediksi yang benar. Namun, karena data tidak seimbang (lebih banyak kasus depresi daripada tidak depresi), saya juga menggunakan precision, recall, dan F1-score untuk mengevaluasi performa model secara lebih mendalam. Akurasi (accuracy) adalah salah satu metrik evaluasi yang digunakan untuk mengukur seberapa tepat model klasifikasi dalam membuat prediksi.
+Penulis memilih akurasi (accuracy) sebagai metrik utama karena ingin mengukur seberapa sering model secara keseluruhan memberikan prediksi yang benar. Namun, karena data tidak seimbang (lebih banyak kasus depresi daripada tidak depresi), penulis juga menggunakan precision, recall, dan F1-score untuk mengevaluasi performa model secara lebih mendalam. Akurasi (accuracy) adalah salah satu metrik evaluasi yang digunakan untuk mengukur seberapa tepat model klasifikasi dalam membuat prediksi.
 
 ![image](https://github.com/user-attachments/assets/0b6fa4cb-49e0-46b0-9d49-49b1e1c2958a)
 
@@ -322,7 +322,7 @@ Hasil ini mengindikasikan bahwa tekanan akademik dan jam kerja/studi yang panjan
 ### Penjelasan Hasil
 1. Akurasi (Accuracy = 76.1%)
 - Kenapa dipakai?
-    Saya menggunakan akurasi karena ingin melihat persentase prediksi benar secara keseluruhan. Nilai 76.1% menunjukkan bahwa model cukup baik dalam memprediksi kedua kelas (depresi dan tidak depresi).
+    Penulis menggunakan akurasi karena ingin melihat persentase prediksi benar secara keseluruhan. Nilai 76.1% menunjukkan bahwa model cukup baik dalam memprediksi kedua kelas (depresi dan tidak depresi).
 
 - Kekurangan akurasi:
     Jika data tidak seimbang, akurasi bisa menyesatkan. Misalnya, jika 90% data adalah depresi, model yang selalu prediksi "depresi" akan dapat akurasi 90%, padahal buruk dalam mengenali kasus tidak depresi.
