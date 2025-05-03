@@ -28,28 +28,16 @@ Berikut beberapa pernyataan masalah berdasarkan dataset:
 
 ## Goals
 
-*   Analisis korelasi antara Work/Study Hours dengan Gender terhadap label Depression.
-*   analisis jumlah pelajar yang depresi dikarenakan pengaruh lingkungan menggunakan Bar Plot atau Count Plot
-*   Buat model klasifikasi (target: Depression) menggunakan data numerik tersebut.Evaluasi model dengan F1-score, Confusion Matrix, dan ROC-AUC.
+*   Membangun model prediksi kondisi depresi berdasarkan data numerik.
+*   Mengetahui hubungan antara jam kerja/belajar dan gender terhadap depresi.
+*   Mengukur keandalan model untuk digunakan dalam sistem nyata.
 
 ## Solution statements
 
-1. Solusi 1 Baseline Modeling
 
-    -   Gunakan Logistic Regression karena semua fitur numerik → minim preprocessing.
-    -   Evaluasi dengan accuracy dan confusion matrix.
-
-
-2. Solusi 2 Advanced Modeling
-
-    -   Random Forest Classifier → cocok untuk feature importance
-    -  XGBoost Classifier → performa tinggi untuk dataset numerik
-
-
-3. Solusi 3 Hyperparameter Tuning dan Validasi
-
-    -   Gunakan GridSearchCV atau RandomizedSearchCV
-    -   Validasi silang (cross-validation) untuk generalisasi model.
+*   Analisis korelasi antara Work/Study Hours dengan Gender terhadap label Depression.
+*   analisis jumlah pelajar yang depresi dikarenakan pengaruh lingkungan menggunakan Bar Plot atau Count Plot
+*   Buat model klasifikasi (target: Depression) menggunakan data numerik tersebut.Evaluasi model dengan F1-score, Confusion Matrix, dan ROC-AUC.
 
 
 ## Data Understanding
@@ -92,25 +80,32 @@ Dataset ini terdiri dari beberapa fitur/variabel berikut:
 - Family History of Mental Illness: Riwayat penyakit mental dalam keluarga (Ya/Tidak).
 
 - Depression: Label target untuk klasifikasi, menunjukkan apakah responden mengalami depresi (1 = depresi, 0 = tidak).
+  
+***Dalam Mengenali data penulis tidak menemukan adanya missing value dan data yang duplicate***
+  ![image](https://github.com/user-attachments/assets/7f572c1c-5ec7-41b9-9743-ec11dd260cc5)
+
+  ![image](https://github.com/user-attachments/assets/cc8844e7-f63d-4bd6-91ee-45c78a9e450c)
+
+
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
-- dalam menganalisis data pada data Profession saya menemukan tidak hanya data student yang terdia melainkan yang lain juga
+- dalam menganalisis data pada data Profession penulis menemukan tidak hanya data student yang terdia melainkan yang lain juga
   ![image](https://github.com/user-attachments/assets/2e7252df-2e43-481a-b207-3a4b2ede7a96)
 
-  sehingga langkah saya adalah menghapus data colum selain studen karena model ini akan saya gunakan untuk memprediksi seorang pelajar.
+  sehingga langkah penulis adalah menghapus data colum selain studen karena model ini akan digunakan untuk memprediksi seorang pelajar.
   hasil:
   
   ![image](https://github.com/user-attachments/assets/5ee2278c-4226-4949-a998-cc172fb5de3f)
 
-- dalam menganalisi data saya menemukan ada data pada Age yang yaitu sebuah outlier dan tidak relevan dengan umur pelajar
+- dalam menganalisi data penulis menemukan ada data pada Age yang yaitu sebuah outlier dan tidak relevan dengan umur pelajar dengan teknik visualisasi boxplot
 
   
   ![image](https://github.com/user-attachments/assets/85310de5-c29e-4c8e-962a-ec8e05858969)
 
 
-   dan setelah ini saya sudah menghapus outliernya
+   dan setelah ini penulis menghapus data selain student karena tidak relevan dengan tema project
 
-- lalu selanjutnya saya membuat Headmap korelasi antar variable
+- lalu selanjutnya penulis membuat Headmap korelasi antar variable
 
 
 ![image](https://github.com/user-attachments/assets/fad835c7-1821-43c1-a504-864273ee3f48)
@@ -121,6 +116,14 @@ Dataset ini terdiri dari beberapa fitur/variabel berikut:
 
 ## Data Preparation
 Tahapan data preparation dilakukan untuk memastikan data yang digunakan dalam pemodelan bersih, relevan, dan dalam format yang sesuai untuk algoritma machine learning. Adapun langkah-langkah yang dilakukan dalam proses ini adalah sebagai berikut:
+
+1. Penanganan Outlier
+
+   ![image](https://github.com/user-attachments/assets/8532ed5c-3386-44df-b983-564140e8d47b)
+
+Disini Penulis menggunakan tekni IQR, IQR adalah singkatan dari Interquartile Range atau Rentang Antarkuartil dalam bahasa Indonesia. QR adalah ukuran statistik yang menunjukkan sebaran tengah dari data, yaitu rentang antara kuartil ketiga (Q3) dan kuartil pertama (Q1). Lalu penulis menerapkan teknik ini untuk membuat rentang pada kolom 'Age'
+
+Lalu untuk penanganan missing value, duplicate dll itu tidak diperlukan karena tidak ditemukan hal tersebut dalam data
 
 1. Pemilihan Fitur
     Fitur-fitur awal yang dipilih berdasarkan analisis korelasi dan relevansi terhadap target (Depression) adalah:
@@ -159,26 +162,33 @@ Dataset dibagi menjadi dua bagian:
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 #### Proses Data Preparation
 
-1. **Pemilihan Fitur (Feature Selection):**  
+1. **Pemilihan Fitur (Feature Selection):**
+   Feature selection adalah proses memilih fitur-fitur yang paling relevan dari seluruh data yang tersedia untuk digunakan dalam proses pemodelan. Proses ini sangat penting karena dapat meningkatkan kinerja         model secara keseluruhan. Dengan menghilangkan fitur yang tidak relevan atau yang mengandung banyak noise, model akan lebih fokus mempelajari pola yang benar-benar penting, sehingga hasil prediksi menjadi        lebih akurat. Selain itu, feature selection membantu mengurangi risiko overfitting, yaitu kondisi ketika model terlalu menyesuaikan diri dengan data latih sehingga performanya menurun saat diuji pada data        baru. Dari sisi efisiensi, model dengan fitur yang lebih sedikit akan membutuhkan waktu pelatihan dan komputasi yang lebih cepat.
    Fitur-fitur yang digunakan dipilih berdasarkan hasil analisis korelasi terhadap target variabel (`Depression`). Fitur-fitur yang terpilih adalah:
    - `Academic Pressure`
    - `Age`
    - `Work/Study Hours`
    - `Study Satisfaction`  
-   Fitur-fitur ini memiliki hubungan yang signifikan terhadap tingkat depresi responden.
+   Fitur-fitur ini memiliki hubungan yang signifikan terhadap tingkat depresi responden. 
 
-2. **Pembuatan Fitur Baru (Feature Engineering):**  
+2. **Pembuatan Fitur Baru (Feature Engineering):**
+   Feature engineering adalah proses membuat, mengubah, atau memilih fitur (variabel) dari data mentah agar model machine learning dapat bekerja lebih baik. Proses ini sangat diperlukan karena kualitas fitur sangat menentukan kualitas prediksi yang dihasilkan oleh model. Alasan utama kenapa feature engineering penting adalah karena data mentah sering kali belum cukup representatif untuk langsung digunakan.
    Untuk memperkaya informasi yang diterima model, dua fitur baru dibuat:
    - `Pressure_Hours_Ratio`: Rasio antara tekanan akademik terhadap jam belajar/kerja, untuk mengukur seberapa besar tekanan yang dirasakan dibandingkan waktu belajar.
    - `Age_Study_Satisfaction`: Perkalian antara umur dan kepuasan belajar, untuk melihat apakah usia berpengaruh terhadap kepuasan belajar yang mungkin memengaruhi kondisi psikologis.
 
-3. **Pemisahan Data (Train-Test Split):**  
+3. **Pemisahan Data (Train-Test Split):**
+   Train-test split adalah proses membagi dataset menjadi dua bagian utama: data latih (train) dan data uji (test). Proses ini sangat penting dalam machine learning karena bertujuan untuk mengevaluasi performa model secara objektif.Ketika kita melatih model, kita ingin model tersebut mampu mempelajari pola dari data latih, lalu menguji kemampuannya pada data yang belum pernah dilihat sebelumnya, yaitu data uji. Jika kita hanya melatih dan menguji model pada data yang sama, maka model bisa saja terlihat sangat akurat padahal sebenarnya hanya "menghafal" data (terjadi overfitting). Dengan adanya pemisahan train-test, kita bisa melihat apakah model benar-benar bisa menggeneralisasi dan bekerja baik terhadap data baru.
    Dataset dibagi menjadi dua bagian, yaitu 80% data untuk pelatihan dan 20% untuk pengujian menggunakan fungsi `train_test_split`.  
    Ini dilakukan agar model dapat diuji dengan data yang belum pernah dilihat sebelumnya, sehingga hasil evaluasi lebih objektif.
 
 4. **Standardisasi Data:**  
-   Semua fitur diskalakan menggunakan `StandardScaler` agar berada pada skala yang seragam.  
+   Semua fitur diskalakan menggunakan `StandardScaler` agar berada pada skala yang seragam. Standardisasi data adalah proses transformasi fitur numerik agar memiliki rata-rata (mean) 0 dan standar deviasi 1. Tujuannya adalah untuk menyamakan skala semua fitur sehingga tidak ada satu fitur pun yang mendominasi pembelajaran model hanya karena memiliki rentang nilai yang lebih besar. 
    Meskipun model Random Forest tidak terlalu sensitif terhadap skala data, proses ini tetap dilakukan untuk memastikan kestabilan model dan membantu interpretasi fitur yang mungkin digunakan pada tahap analisis atau visualisasi lanjutan.
+   Proses standardisasi biasanya dilakukan dengan rumus:
+
+   ![image](https://github.com/user-attachments/assets/3d5d5c7b-16d6-4779-8ffa-6494a04d1568)
+
 
 
 #### Alasan Pentingnya Tahapan Data Preparation
@@ -283,6 +293,30 @@ Dengan keunggulan-keunggulan tersebut, Random Forest menjadi pilihan yang tepat 
 Saya memilih akurasi (accuracy) sebagai metrik utama karena ingin mengukur seberapa sering model secara keseluruhan memberikan prediksi yang benar. Namun, karena data tidak seimbang (lebih banyak kasus depresi daripada tidak depresi), saya juga menggunakan precision, recall, dan F1-score untuk mengevaluasi performa model secara lebih mendalam. Akurasi (accuracy) adalah salah satu metrik evaluasi yang digunakan untuk mengukur seberapa tepat model klasifikasi dalam membuat prediksi.
 
 ![image](https://github.com/user-attachments/assets/0b6fa4cb-49e0-46b0-9d49-49b1e1c2958a)
+
+###   1. Apakah tekanan Work/Study Hours dengan Gender memiliki pengaruh signifikan terhadap depresi pelajar?
+Berdasarkan grafik yang menampilkan hubungan antara durasi kerja/studi harian dengan gejala depresi pada kelompok gender berbeda, terlihat pola yang cukup jelas. Pada siswa laki-laki, gejala depresi mulai muncul ketika durasi kerja/studi mencapai 6 jam per hari dan semakin intens seiring bertambahnya waktu, dengan puncak yang jelas terlihat pada durasi 9 jam dan 12 jam per hari. Pola ini menunjukkan bahwa beban kerja atau studi yang terlalu panjang, terutama yang melebihi 6 jam sehari, secara signifikan berkorelasi dengan munculnya gejala depresi pada populasi laki-laki. Durasi ekstrem hingga 12 jam tampaknya memberikan dampak yang paling berat, mungkin karena kombinasi faktor kelelahan fisik, mental, dan kurangnya waktu untuk pemulihan atau aktivitas lainnya. Berdasarkan grafik yang ditampilkan, analisis ini bersifat univariat (analisis satu variabel) untuk masing-masing kelompok gender, bukan multivariat.
+
+![image](https://github.com/user-attachments/assets/21522fd1-e9a1-44cb-91db-5c66698932ec)
+
+Grafik ini menunjukkan analisis univariat sederhana tentang hubungan durasi kerja/studi dengan depresi, yang dipisahkan berdasarkan gender. Untuk memahami hubungan yang lebih kompleks, diperlukan pendekatan multivariat dengan memasukkan variabel-variabel tambahan.
+
+
+###    2. Apakah data dari Family History of Mental Illness memiliki pengaruh terhadap depresi pelajar?
+
+![image](https://github.com/user-attachments/assets/7dc43458-cfff-478c-bef5-36d06c37298d)
+
+Data ini menunjukkan hubungan antara riwayat penyakit mental keluarga (Family History of Mental Illness) dengan status depresi (Depression) pada individu. Terdapat empat kategori data utama: (1) Tidak ada riwayat keluarga dan tidak depresi (No 0) sebanyak 6.330 kasus, (2) Tidak ada riwayat keluarga tetapi depresi (No 1) sebanyak 8.049 kasus, (3) Ada riwayat keluarga tetapi tidak depresi (Yes 0) sebanyak 5.222 kasus, dan (4) Ada riwayat keluarga dan depresi (Yes 1) sebanyak 8.257 kasus. 
+
+Dari data tersebut terlihat bahwa kelompok dengan riwayat keluarga penyakit mental memiliki jumlah kasus depresi sedikit lebih tinggi (8.257) dibandingkan kelompok tanpa riwayat (8.049). Namun, kelompok tanpa riwayat keluarga justru menunjukkan jumlah yang lebih besar pada individu yang tidak mengalami depresi (6.330 berbanding 5.222 pada kelompok dengan riwayat). Data ini bersifat **univariate** karena hanya menganalisis hubungan antara satu variabel independen (riwayat penyakit mental keluarga) dengan satu variabel dependen (status depresi), tanpa mempertimbangkan variabel-variabel lain yang mungkin berpengaruh. Analisis ini memberikan gambaran dasar tentang hubungan antara dua variabel tersebut tanpa melihat interaksi dengan faktor-faktor lain.
+
+###    3. Dapatkah model machine learning memprediksi kondisi depresi mahasiswa berdasarkan data numerik seperti tekanan, jam kerja, kepuasan, dan CGPA?
+
+Evaluasi performa model menunjukkan hasil yang cukup baik dengan akurasi sebesar 0.77 (77%). Analisis lebih mendalam melalui classification report mengungkapkan bahwa model memiliki precision 0.82 dan recall 0.77 untuk kelas 1 (depresi), serta precision 0.70 dan recall 0.76 untuk kelas 0 (tidak depresi). Nilai f1-score yang seimbang di kedua kelas (0.79 untuk kelas 1 dan 0.73 untuk kelas 0) menunjukkan bahwa model dapat memprediksi kedua kelas dengan cukup baik tanpa bias yang signifikan.
+
+![image](https://github.com/user-attachments/assets/d97fbfe8-29b0-4847-bcaf-c36ecef48d3e)
+
+Hasil ini mengindikasikan bahwa tekanan akademik dan jam kerja/studi yang panjang merupakan faktor risiko utama depresi, sementara usia yang lebih tua dan kepuasan terhadap studi berperan sebagai faktor protektif. Model ini berhasil mengidentifikasi pola penting dalam data dengan performa yang cukup baik untuk digunakan sebagai dasar pengambilan keputusan terkait kesehatan mental mahasiswa.
 
 
 ### Penjelasan Hasil
